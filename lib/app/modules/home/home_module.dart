@@ -1,3 +1,4 @@
+import 'package:loja_hasura/app/modules/home/repositories/home_repository.dart';
 import 'package:loja_hasura/app/modules/home/widgets/card_produto/card_produto_controller.dart';
 import 'package:loja_hasura/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -6,8 +7,12 @@ import 'package:loja_hasura/app/modules/home/home_page.dart';
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        
+        // Controllers
         Bind((i) => CardProdutoController()),
-        Bind((i) => HomeController()),
+        Bind((i) => HomeController(i.get<HomeRepository>())),
+        // Repositories
+        Bind((i) => HomeRepository()),
       ];
 
   @override

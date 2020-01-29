@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CardProdutoWidget extends StatelessWidget {
+  final String nomeProduto;
+  final String categoriaProduto;
+  final String tipoProduto;
+  final String valor;
+
+  const CardProdutoWidget({Key key, @required this.nomeProduto, @required this.categoriaProduto, @required this.tipoProduto, @required this.valor}): super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -36,7 +43,7 @@ class CardProdutoWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Bolsa Gutty",
+                Text(nomeProduto,
                  style: TextStyle(
                    color: Colors.black,
                    fontSize: 30,
@@ -46,19 +53,19 @@ class CardProdutoWidget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text("Bolsas Femininas", 
+                Text(categoriaProduto, 
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18)),
                 Row(
                   children: <Widget>[
                     Expanded(
-                      child: Text("Camisetas", 
+                      child: Text(tipoProduto, 
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18)),
                     ),
-                    Text("R\$ 20,00", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),)
+                    Text("R\$ $valor", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),)
                   ],
                 )
               ],
