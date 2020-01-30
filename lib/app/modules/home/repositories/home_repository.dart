@@ -1,9 +1,35 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
+import 'package:hasura_connect/hasura_connect.dart';
+import 'package:loja_hasura/app/modules/models/produto_model.dart';
 
 class HomeRepository extends Disposable {
-  List<String> getProduto() {
-    return ["1", "2", "3", "4", "5", "6"];
+  final HasuraConnect _hasuraConnect;
+
+  HomeRepository(this._hasuraConnect);
+
+
+  Future<List<ProdutoModel>> getProduto() async{
+    var query = ''' 
+      query getProdutos {
+    __typename
+    produto {
+      id
+      nome
+      valor
+      tipo_produto {
+        descricao
+      }
+      categoria_produto {
+        descricao
+      }
+    }
+  }
+''';
+
+  var snapshot = await _hasuraConnect.query(query);
+
+  return ProdutoModel.fromJsonList(snapshot["data"]["produto"] as List);
+
   }
 
   //dispose will be called automatically

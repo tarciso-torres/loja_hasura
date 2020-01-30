@@ -1,3 +1,4 @@
+import 'package:hasura_connect/hasura_connect.dart';
 import 'package:loja_hasura/app/modules/home/repositories/home_repository.dart';
 import 'package:loja_hasura/app/modules/home/widgets/card_produto/card_produto_controller.dart';
 import 'package:loja_hasura/app/modules/home/home_controller.dart';
@@ -12,7 +13,9 @@ class HomeModule extends ChildModule {
         Bind((i) => CardProdutoController()),
         Bind((i) => HomeController(i.get<HomeRepository>())),
         // Repositories
-        Bind((i) => HomeRepository()),
+        Bind((i) => HomeRepository(i.get<HasuraConnect>())),
+        // Outros
+        Bind((i) => HasuraConnect("https://loja-hasura-redfort.herokuapp.com/v1/graphql")),
       ];
 
   @override

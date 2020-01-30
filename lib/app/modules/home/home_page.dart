@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loja_hasura/app/modules/home/home_controller.dart';
 import 'package:loja_hasura/app/modules/home/home_module.dart';
 import 'package:loja_hasura/app/modules/home/widgets/card_produto/card_produto_widget.dart';
-import 'package:mobx/mobx.dart';
+import 'package:loja_hasura/app/modules/models/produto_model.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -27,11 +27,12 @@ class _HomePageState extends State<HomePage> {
           return ListView.builder(
             itemCount: homeController.listaProdutos.length,
             itemBuilder: (BuildContext context, int index){
+              ProdutoModel produto = homeController.listaProdutos[index];
               return CardProdutoWidget(
-                nomeProduto: "Produto $index",
-                 valor: "${10*index}",
-                  categoriaProduto: "Categoria $index",
-                   tipoProduto: "Tipo $index",
+                nomeProduto: produto.nome,
+                 valor: "R\$ ${produto.valor}",
+                  categoriaProduto: produto.categoriaProduto.descricao,
+                   tipoProduto: produto.tipoProduto.descricao,
                    );
             },
           );
