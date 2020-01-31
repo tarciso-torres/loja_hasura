@@ -39,7 +39,9 @@ class _HomePageState extends State<HomePage> {
         }
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/AddProduto");
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
