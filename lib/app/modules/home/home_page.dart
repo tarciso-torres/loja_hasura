@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               ProdutoModel produto = homeController.listaProdutos[index];
               return CardProdutoWidget(
                 nomeProduto: produto.nome,
-                 valor: "R\$ ${produto.valor}",
+                 valor: "${produto.valor}",
                   categoriaProduto: produto.categoriaProduto.descricao,
                    tipoProduto: produto.tipoProduto.descricao,
                    );

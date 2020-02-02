@@ -65,7 +65,10 @@ class CardProdutoWidget extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 18)),
                     ),
-                    Text("R\$ $valor", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),)
+                    Text("R\$ ${double.parse(valor).toStringAsFixed(2).replaceAll('.', ',')}", 
+                    style: TextStyle(color: Colors.white,
+                     fontSize: 30,
+                      fontWeight: FontWeight.bold),)
                   ],
                 )
               ],
