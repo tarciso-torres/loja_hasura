@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:loja_hasura/app/modules/add_produto/add_produto_controller.dart';
+import 'package:loja_hasura/app/modules/add_produto/add_produto_module.dart';
 import 'package:loja_hasura/app/shared/widgets/custom_combobox/custom_combobox_widget.dart';
 import 'package:loja_hasura/app/shared/widgets/label/label_widget.dart';
 import 'package:loja_hasura/app/shared/widgets/textField/textField_widget.dart';
+import 'package:mobx/mobx.dart';
 
 class AddProdutoPage extends StatefulWidget {
   final String title;
@@ -12,6 +16,7 @@ class AddProdutoPage extends StatefulWidget {
 }
 
 class _AddProdutoPageState extends State<AddProdutoPage> {
+  AddProdutoController controller = AddProdutoModule.to.get();
   
   @override
   Widget build(BuildContext context) {
@@ -81,30 +86,72 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                     LabelWidget(
                       title: "Categoria do Produto",
                     ),
-                    CustomComboboxWidget(
-                    items: [
-                      Model("01", "Roupas"),
-                      Model("02", "Alimentos"),
-                      Model("03", "Automotivos"),
-                      Model("04","Jogos")],
-                    onChange: (item) {
-                      print(item.descricao);
-                    },
-                    itemSelecionado: Model("01", "Roupas"),
+                    Observer(
+                      builder: (BuildContext context){
+                        if(controller.tipoProduto == null){
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              border: Border.all(
+                                width: 2,
+                                color: Theme.of(context).primaryColor,
+                              )
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Padding(padding: const EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(),
+                                ),   
+                              ] 
+                            )
+                          );
+                        }
+                        return CustomComboboxWidget(
+                        items: controller.tipoProduto.categoriaProduto
+                            .map((data) => Model(data.id, data.descricao))
+                            .toList(),
+                        onChange: (item) {
+                          print(item.descricao);
+                        },
+                        itemSelecionado: null,
+                        );
+                      },
                     ),
                     LabelWidget(
                       title: "Tipo produto",
                     ),
-                    CustomComboboxWidget(
-                    items: [
-                      Model("01", "Roupas"),
-                      Model("02", "Alimentos"),
-                      Model("03", "Automotivos"),
-                      Model("04","Jogos")],
-                    onChange: (item) {
-                      print(item.descricao);
-                    },
-                    itemSelecionado: Model("01", "Roupas"),
+                    Observer(
+                      builder: (BuildContext context){
+                        if(controller.tipoProduto == null){
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              border: Border.all(
+                                width: 2,
+                                color: Theme.of(context).primaryColor,
+                              )
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Padding(padding: const EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ] 
+                            )
+                          );
+                        }
+                        return CustomComboboxWidget(
+                        items: controller.tipoProduto.tipoProduto
+                            .map((data) => Model(data.id, data.descricao))
+                            .toList(),
+                        onChange: (item) {
+                          print(item.descricao);
+                        },
+                        itemSelecionado: null,
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 20,

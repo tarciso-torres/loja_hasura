@@ -1,3 +1,4 @@
+import 'package:hasura_connect/hasura_connect.dart';
 import 'package:loja_hasura/app/shared/widgets/custom_combobox/custom_combobox_controller.dart';
 import 'package:loja_hasura/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,6 +12,7 @@ class AppModule extends MainModule {
   List<Bind> get binds => [
         Bind((i) => CustomComboboxController()),
         Bind((i) => AppController()),
+        Bind((i) => HasuraConnect("https://loja-hasura-redfort.herokuapp.com/v1/graphql")),
       ];
 
   @override

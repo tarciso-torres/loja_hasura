@@ -26,6 +26,23 @@ mixin _$AddProdutoController on _AddProdutoBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
+  final _$tipoProdutoAtom = Atom(name: '_AddProdutoBase.tipoProduto');
+
+  @override
+  TipoCategoriaProdutoDto get tipoProduto {
+    _$tipoProdutoAtom.context.enforceReadPolicy(_$tipoProdutoAtom);
+    _$tipoProdutoAtom.reportObserved();
+    return super.tipoProduto;
+  }
+
+  @override
+  set tipoProduto(TipoCategoriaProdutoDto value) {
+    _$tipoProdutoAtom.context.conditionallyRunInAction(() {
+      super.tipoProduto = value;
+      _$tipoProdutoAtom.reportChanged();
+    }, _$tipoProdutoAtom, name: '${_$tipoProdutoAtom.name}_set');
+  }
+
   final _$_AddProdutoBaseActionController =
       ActionController(name: '_AddProdutoBase');
 
