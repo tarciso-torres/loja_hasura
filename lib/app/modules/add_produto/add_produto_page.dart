@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loja_hasura/app/modules/add_produto/add_produto_controller.dart';
 import 'package:loja_hasura/app/modules/add_produto/add_produto_module.dart';
+import 'package:loja_hasura/app/modules/add_produto/models/tipo_produto_categoria_dto.dart';
 import 'package:loja_hasura/app/shared/widgets/custom_combobox/custom_combobox_widget.dart';
 import 'package:loja_hasura/app/shared/widgets/label/label_widget.dart';
 import 'package:loja_hasura/app/shared/widgets/textField/textField_widget.dart';
-import 'package:mobx/mobx.dart';
 
 class AddProdutoPage extends StatefulWidget {
   final String title;
@@ -68,6 +68,7 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                       title: "Descrição",
                     ),
                     TextFieldWidget(
+                      controller: controller.setDescricao,
                       hintText: "Descrição do Produto",
                     ),
                     SizedBox(
@@ -77,6 +78,7 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                       title: "Valor",
                     ),
                     TextFieldWidget(
+                      controller: controller.setValor,
                       hintText: "Valor",
                       textInputType: TextInputType.number,
                     ),
@@ -111,9 +113,8 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                         items: controller.tipoProduto.categoriaProduto
                             .map((data) => Model(data.id, data.descricao))
                             .toList(),
-                        onChange: (item) {
-                          print(item.descricao);
-                        },
+                        onChange: (tipo) => controller.setSelectedTipo(
+                          TipoECategoriaDto(id: tipo.id, descricao: tipo.descricao)),
                         itemSelecionado: null,
                         );
                       },
@@ -146,9 +147,8 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                         items: controller.tipoProduto.tipoProduto
                             .map((data) => Model(data.id, data.descricao))
                             .toList(),
-                        onChange: (item) {
-                          print(item.descricao);
-                        },
+                        onChange: (tipo) => controller.setSelectedCategoria(
+                          TipoECategoriaDto(id: tipo.id, descricao: tipo.descricao)),
                         itemSelecionado: null,
                         );
                       },
@@ -160,7 +160,9 @@ class _AddProdutoPageState extends State<AddProdutoPage> {
                       width: MediaQuery.of(context).size.width,
                       child: RaisedButton(
                         color: primaryColor,
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.salvar();
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Text("Salvar", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold))

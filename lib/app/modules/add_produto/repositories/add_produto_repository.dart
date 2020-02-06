@@ -25,6 +25,26 @@ class AddProdutoRepository extends Disposable {
 
       return TipoCategoriaProdutoDto.fromMap(snapshot["data"]);
   }
+
+    Future<TipoCategoriaProdutoDto> addProduto(String descriacao, String valor,
+        String selectedProduto, String selectedCategoria) async{
+    var query = '''
+      query getTipoCategoriaProduto {
+        tipo_produto {
+          id
+          descricao
+        }
+        categoria_produto {
+          id
+          descricao
+        }
+      }
+    ''';
+
+      var snapshot = await _hasuraConnect.query(query);
+
+      return TipoCategoriaProdutoDto.fromMap(snapshot["data"]);
+  }
   
 
   //dispose will be called automatically

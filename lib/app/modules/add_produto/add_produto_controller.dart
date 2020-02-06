@@ -9,8 +9,6 @@ class AddProdutoController = _AddProdutoBase with _$AddProdutoController;
 abstract class _AddProdutoBase with Store {
 
   final AddProdutoRepository addProdutoRepository;
-  @observable
-  int value = 0;
 
   _AddProdutoBase(this.addProdutoRepository){
     addProdutoRepository.getTipoCategoriaProduto().then((data) {
@@ -18,11 +16,48 @@ abstract class _AddProdutoBase with Store {
     });
   }
 
+
+  @observable
+  String descricao = "";
+
+  @action
+  setDescricao(String _desc) {
+    descricao = _desc;
+  }
+
+  @observable
+  String valor = "";
+
+  @action
+  setValor(String _valor) {
+    valor = _valor;
+  }
+
+  @observable
+  TipoECategoriaDto selectedCategoria;
+
+  @action
+  setSelectedCategoria(TipoECategoriaDto _selectedCategoria) {
+    selectedCategoria = _selectedCategoria;
+  }
+
+  @observable
+  TipoECategoriaDto selectedTipo;
+
+  @action
+  setSelectedTipo(TipoECategoriaDto _selectedTipo) {
+    selectedTipo = _selectedTipo;
+  }
+
+
   @observable
   TipoCategoriaProdutoDto tipoProduto;
 
   @action
-  void increment() {
-    value++;
+  void salvar() {
+    print(descricao);
+    print(valor);
+    print(selectedCategoria.descricao);
+    print(selectedTipo.descricao);
   }
 }
