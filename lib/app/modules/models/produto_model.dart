@@ -7,7 +7,7 @@ import 'dart:convert';
 class ProdutoModel {
     final String id;
     final String nome;
-    final int valor;
+    final double valor;
     final TipoOuCategoriaDto tipoProduto;
     final TipoOuCategoriaDto categoriaProduto;
 

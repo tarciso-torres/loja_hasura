@@ -54,10 +54,11 @@ abstract class _AddProdutoBase with Store {
   TipoCategoriaProdutoDto tipoProduto;
 
   @action
-  void salvar() {
-    print(descricao);
-    print(valor);
-    print(selectedCategoria.descricao);
-    print(selectedTipo.descricao);
+  Future<bool> salvar() async{
+    if(descricao != null && valor != null && selectedTipo?.id != null && selectedCategoria?.id != null)
+    {
+      return await addProdutoRepository.addProduto(descricao, valor, selectedTipo.id, selectedCategoria.id);
+    }
+    return false;
   }
 }

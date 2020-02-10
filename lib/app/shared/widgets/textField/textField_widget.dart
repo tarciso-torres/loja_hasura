@@ -4,8 +4,9 @@ class TextFieldWidget extends StatelessWidget {
   final String hintText;
   final TextInputType textInputType;
   final controller;
+  final String textEdit;
 
-  const TextFieldWidget({Key key, @required this.hintText, this.textInputType = TextInputType.text, this.controller}) : super(key: key);
+  const TextFieldWidget({Key key, @required this.hintText, this.textInputType = TextInputType.text, this.controller, this.textEdit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class TextFieldWidget extends StatelessWidget {
                 color: primaryColor, 
                 fontSize: 18
               ),
+              controller: TextEditingController(text: textEdit),
               decoration: InputDecoration(
                 hintText: hintText,
                 border: OutlineInputBorder(

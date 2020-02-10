@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'add_produto_controller.dart';
+part of 'update_produto_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'add_produto_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$AddProdutoController on _AddProdutoBase, Store {
-  final _$descricaoAtom = Atom(name: '_AddProdutoBase.descricao');
+mixin _$UpdateProdutoController on _UpdateProdutoBase, Store {
+  final _$descricaoAtom = Atom(name: '_UpdateProdutoBase.descricao');
 
   @override
   String get descricao {
@@ -26,7 +26,7 @@ mixin _$AddProdutoController on _AddProdutoBase, Store {
     }, _$descricaoAtom, name: '${_$descricaoAtom.name}_set');
   }
 
-  final _$valorAtom = Atom(name: '_AddProdutoBase.valor');
+  final _$valorAtom = Atom(name: '_UpdateProdutoBase.valor');
 
   @override
   String get valor {
@@ -44,7 +44,7 @@ mixin _$AddProdutoController on _AddProdutoBase, Store {
   }
 
   final _$selectedCategoriaAtom =
-      Atom(name: '_AddProdutoBase.selectedCategoria');
+      Atom(name: '_UpdateProdutoBase.selectedCategoria');
 
   @override
   TipoECategoriaDto get selectedCategoria {
@@ -61,7 +61,7 @@ mixin _$AddProdutoController on _AddProdutoBase, Store {
     }, _$selectedCategoriaAtom, name: '${_$selectedCategoriaAtom.name}_set');
   }
 
-  final _$selectedTipoAtom = Atom(name: '_AddProdutoBase.selectedTipo');
+  final _$selectedTipoAtom = Atom(name: '_UpdateProdutoBase.selectedTipo');
 
   @override
   TipoECategoriaDto get selectedTipo {
@@ -78,70 +78,70 @@ mixin _$AddProdutoController on _AddProdutoBase, Store {
     }, _$selectedTipoAtom, name: '${_$selectedTipoAtom.name}_set');
   }
 
-  final _$tipoProdutoAtom = Atom(name: '_AddProdutoBase.tipoProduto');
+  final _$tipoProdutoAtom = Atom(name: '_UpdateProdutoBase.tipoProduto');
 
   @override
-  TipoCategoriaProdutoDto get tipoProduto {
+  ProdutoTipoCategoriaProdutoDto get tipoProduto {
     _$tipoProdutoAtom.context.enforceReadPolicy(_$tipoProdutoAtom);
     _$tipoProdutoAtom.reportObserved();
     return super.tipoProduto;
   }
 
   @override
-  set tipoProduto(TipoCategoriaProdutoDto value) {
+  set tipoProduto(ProdutoTipoCategoriaProdutoDto value) {
     _$tipoProdutoAtom.context.conditionallyRunInAction(() {
       super.tipoProduto = value;
       _$tipoProdutoAtom.reportChanged();
     }, _$tipoProdutoAtom, name: '${_$tipoProdutoAtom.name}_set');
   }
 
-  final _$salvarAsyncAction = AsyncAction('salvar');
+  final _$editarAsyncAction = AsyncAction('editar');
 
   @override
-  Future<bool> salvar() {
-    return _$salvarAsyncAction.run(() => super.salvar());
+  Future<bool> editar() {
+    return _$editarAsyncAction.run(() => super.editar());
   }
 
-  final _$_AddProdutoBaseActionController =
-      ActionController(name: '_AddProdutoBase');
+  final _$_UpdateProdutoBaseActionController =
+      ActionController(name: '_UpdateProdutoBase');
 
   @override
   dynamic setDescricao(String _desc) {
-    final _$actionInfo = _$_AddProdutoBaseActionController.startAction();
+    final _$actionInfo = _$_UpdateProdutoBaseActionController.startAction();
     try {
       return super.setDescricao(_desc);
     } finally {
-      _$_AddProdutoBaseActionController.endAction(_$actionInfo);
+      _$_UpdateProdutoBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setValor(String _valor) {
-    final _$actionInfo = _$_AddProdutoBaseActionController.startAction();
+    final _$actionInfo = _$_UpdateProdutoBaseActionController.startAction();
     try {
       return super.setValor(_valor);
     } finally {
-      _$_AddProdutoBaseActionController.endAction(_$actionInfo);
+      _$_UpdateProdutoBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setSelectedCategoria(TipoECategoriaDto _selectedCategoria) {
-    final _$actionInfo = _$_AddProdutoBaseActionController.startAction();
+    final _$actionInfo = _$_UpdateProdutoBaseActionController.startAction();
     try {
       return super.setSelectedCategoria(_selectedCategoria);
     } finally {
-      _$_AddProdutoBaseActionController.endAction(_$actionInfo);
+      _$_UpdateProdutoBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setSelectedTipo(TipoECategoriaDto _selectedTipo) {
-    final _$actionInfo = _$_AddProdutoBaseActionController.startAction();
+    final _$actionInfo = _$_UpdateProdutoBaseActionController.startAction();
     try {
       return super.setSelectedTipo(_selectedTipo);
     } finally {
-      _$_AddProdutoBaseActionController.endAction(_$actionInfo);
+      _$_UpdateProdutoBaseActionController.endAction(_$actionInfo);
     }
   }
 }

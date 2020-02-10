@@ -16,11 +16,5 @@ void main() {
     test("First Test", () {
       expect(addproduto, isInstanceOf<AddProdutoController>());
     });
-
-    test("Set Value", () {
-      expect(addproduto.value, equals(0));
-      addproduto.increment();
-      expect(addproduto.value, equals(1));
-    });
   });
 }

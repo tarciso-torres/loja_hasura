@@ -26,24 +26,25 @@ class AddProdutoRepository extends Disposable {
       return TipoCategoriaProdutoDto.fromMap(snapshot["data"]);
   }
 
-    Future<TipoCategoriaProdutoDto> addProduto(String descriacao, String valor,
+    Future<bool> addProduto(String descricao, String valor,
         String selectedProduto, String selectedCategoria) async{
-    var query = '''
-      query getTipoCategoriaProduto {
-        tipo_produto {
-          id
-          descricao
-        }
-        categoria_produto {
-          id
-          descricao
+    var mutation = '''
+      mutation addProduto(\$nome: String, \$categoria: uuid, \$tipo: uuid, \$valor: float8) {
+        insert_produto(objects: {nome: \$nome, categoria_produto_id: \$categoria, tipo_produto_id: \$tipo, valor: \$valor}) {
+        affected_rows
         }
       }
     ''';
 
-      var snapshot = await _hasuraConnect.query(query);
+      var snapshot = await _hasuraConnect.mutation(mutation, variables: 
+        {
+          "nome": descricao,
+          "categoria": selectedProduto,
+          "tipo": selectedCategoria,
+          "valor": valor
+        });
 
-      return TipoCategoriaProdutoDto.fromMap(snapshot["data"]);
+      return snapshot["data"]["insert_produto"]["affected_rows"] > 0;
   }
   
 
